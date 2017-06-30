@@ -34,7 +34,7 @@
           # Command Line, Save Your Life
           *常用命令行工具介绍*
 
-          **2017-06-23  [@CntChen](https://github.com/CntChen)**
+          **2017-06-30  [@CntChen](https://github.com/CntChen)**
         </script>
       </section>
 
@@ -80,6 +80,7 @@
               * Unix 类的系统
               * 在 Ubuntu 16.10 可安装或运行
               * <<鸟哥的 Linux 私房菜 -- 基础学习篇>>
+              * 分享以操作演示为主
             </script>
         </section>
       </section>
@@ -162,7 +163,7 @@
 
 ```php
 $ find -name '*.tpl'
-$ find -wholename '\*apply/\*.tpl'
+$ find -wholename '\*apply/\*.tpl' # \*表示`*`
 ```
             </script>
         </section>
@@ -176,8 +177,8 @@ $ find -wholename '\*apply/\*.tpl'
               * Regexp
 
 ```
-$ grep -rin 'webpack-?dev'
-$ find -wholename '*.tpl' | xargs grep 'elesif'
+$ grep -rin 'webpack.'
+$ find -wholename '*.tpl' | xargs grep -rin 'else if'
 ```
             </script>
         </section>
@@ -190,7 +191,7 @@ $ find -wholename '*.tpl' | xargs grep 'elesif'
               * 增删改
 
 ```
-$ sed -i "s#options.replace#options.data.replace#g" ./src/pages/f7.js
+$ sed -i "s#ajaxStart#AjaxStart#g" ./src/pages/f7.js
 ```
             </script>
         </section>
@@ -210,6 +211,7 @@ $ sed -i "s#options.replace#options.data.replace#g" ./src/pages/f7.js
               ### 网络管理
               * ping
               * netstat -lanp 监听中,所有,端口号,进程pid
+              * lsof -i PORT (list open files)
 
 ```
 $ ping m-zl-st1.cfcmu.cn
@@ -218,6 +220,9 @@ PING m-zl-st1.cfcmu.cn (127.0.0.1) 56(84) bytes of data.
 ```
 Error: listen EADDRINUSE 0.0.0.0:8080
 $ netstat -lanp | grep '8080'
+```
+```
+$ lsof -i :8080
 ```
 
             </script>
@@ -366,8 +371,8 @@ const shellCommands = [
   ].join(' && ');
 ```
 ```
-cd: no such file or directory: no-exit-folder
 $ cd no-eixt-folder; rm -rf ./
+cd: no such file or directory: no-exit-folder
 ......
 ......
 ......^C
@@ -375,8 +380,8 @@ $ cd no-eixt-folder; rm -rf ./
             </script>
         </section>
         <section>
-          <h2>shell 脚本</h2>
-          <h3>多重命令实例</h3>
+          <h2>Shell 脚本</h2>
+          <h3>rm 事故</h3>
           <img height="500" src="./sources/img/gitlab-delete.png">
         </section>
         <section data-markdown>
@@ -423,9 +428,9 @@ for i in $(ls ./)
 do
   echo $i
   cd $i
-  sed -i "s#options.replace#options.data.replace#g" ./src/pages/f7.js
+  sed -i "s#ajaxStart#AjaxStart#g" ./src/pages/f7.js
   ga ./src/pages/f7.js
-  git commit -m 'fixbug: ajax init hook data handle bug'
+  git commit -m 'fixbug: ajax start hook bug'
   # git push -u origin fix-ajax-bug
   cd ..
 done

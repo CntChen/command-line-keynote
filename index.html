@@ -1,0 +1,475 @@
+<html>
+
+<head>
+  <title>Command Line, Save Your Life</title>
+  <link rel="stylesheet" href="./reveal/css/reveal.css">
+  <link rel="stylesheet" href="./reveal/css/theme/white.css">
+  <style>
+    .left {
+      width: 50%;
+      float: left;
+    }
+    
+    .right {
+      width: 50%;
+      float: right;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-transform: none!important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-markdown>
+        <script type="text/template">
+          # Command Line, Save Your Life
+          *常用命令行工具介绍*
+
+          **2017-06-23  [@CntChen](https://github.com/CntChen)**
+        </script>
+      </section>
+
+      <section data-markdown>
+        <script type="text/template">
+          ## 目录
+          * 相关概念和背景
+          * 常用命令行工具
+          * 终端使用技巧
+          * Shell 脚本
+        </script>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 相关概念
+              * **命令行用户接口 (Command-line User Interface -- CLI)** <br/>
+              一种用户与计算机程序的交互方式，用户通过连续的文本行向程序提交指令．
+
+              * **Shell** <br/>
+              一种将文本语句作为命令执行的编程语言及执行器(command-line interpreter).
+
+              * **终端模拟器** <br/>
+              Shell 的容器，键入数据信息并展示数据结果的硬件或软件,支持外设,字符样式和编码.
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## **命令行的优点**
+              * **提高工作效率** <br/>
+              减少 GUI 操作 <br/>
+              减少重复操作
+
+              * **拓展前端/移动工程师的外沿** <br/>
+              构建环境维护 <br/>
+              服务器操作
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## **备注**
+              * Unix 类的系统
+              * 在 Ubuntu 16.10 可安装或运行
+              * <<鸟哥的 Linux 私房菜 -- 基础学习篇>>
+            </script>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              You know nothing ☃️
+              > XXX --help
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 目录跳转
+              #### cd (change directory)
+              * cd ./floder/path
+              * cd ../
+              * cd ~
+              * cd /
+              * pwd (print working directory)
+              * cd -
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 目录跳转
+              #### [autojump](https://github.com/wting/autojump)
+              > a faster way to navigate your filesystem
+
+              * j part-of-your-path-name
+              * jc
+              * jo, jco
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 创建删除
+              * touch
+              * mkdir
+              * rm -rf
+              * mv 移动或重命名
+              * cp -r
+              * `cp -s target softlink` 创建软链接
+
+> $ sudo rm -rf ./ tmp
+
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 查看查找
+              * **ls -al** 全部文件和文件属性
+              * which 寻找可执行文件位置
+              * whereis $PATH 范围内的文件
+              * locate 全文查找,在文件索引数据库中查找,快,先运行 `sudo updatedb`
+              * **du -sh**, du -ah
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 查看查找 -- find
+              * find -name PATTERN 查找模式匹配的文件名
+              * find -wholename PATTERN 查找带路径的模式匹配的文件名
+              * 通配符号
+               * `*` 0到多个字符
+               * ? 匹配任意字符
+               * [list] list中任一字符
+               * ...
+
+```php
+$ find -name '*.tpl'
+$ find -wholename '\*apply/\*.tpl'
+```
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 查看查找
+              #### grep (global regular expression print)
+              * **grep -rin** 
+              * **grep -rin3**
+              * Regexp
+
+```
+$ grep -rin 'webpack-?dev'
+$ find -wholename '*.tpl' | xargs grep 'elesif'
+```
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 文本处理
+              ### sed
+              * 终端中的文本处理工具
+              * 增删改
+
+```
+$ sed -i "s#options.replace#options.data.replace#g" ./src/pages/f7.js
+```
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 进程管理
+              * **ps aux** 查看进程,所有,有效用户,忽略终端进程
+              * **kill -9 pid** 杀死进程
+              * top 动态查看进程变化
+              * free 查看内存
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 网络管理
+              * ping
+              * netstat -lanp 监听中,所有,端口号,进程pid
+
+```
+$ ping m-zl-st1.cfcmu.cn
+PING m-zl-st1.cfcmu.cn (127.0.0.1) 56(84) bytes of data.
+```
+```
+Error: listen EADDRINUSE 0.0.0.0:8080
+$ netstat -lanp | grep '8080'
+```
+
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 常用命令行工具
+              ### 编辑工具 Vim
+              * modes: navigation -- edit -- command 
+              * Terminal
+              * VS Code -- vscodevim
+              * chrome extention -- Vimium
+              * 🙁wtf -> 😄survival -> 💪good
+              * vimtutor
+            </script>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 终端使用技巧
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 终端使用技巧
+              ### alias
+              * git
+              * rm 
+              * vscode
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 终端使用技巧
+              ### alias
+
+```
+# rm -rf hack
+alias rm=trash
+alias rrm="/bin/rm"
+
+trash(){
+ /bin/rm -rf ~/.trash/$(echo $@ | sed -e "s/^.*\///")
+ mv -f $@ ~/.trash/
+}
+```
+            </script>
+        </section>
+        <section>
+          <h2>终端使用技巧</h2>
+          <h3>alias -- 命令纠正</h3>
+          <img height="500" src="./sources/img/thefuck.jpg">
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 终端使用技巧
+              ### 快捷键
+              * set -o emacs/vi
+              * 编辑导航
+              * jobs
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 终端使用技巧
+              ### zsh / oh-my-zsh
+              * 强大的自动补全 (Command-line completion)
+              * 友好的提示 Prompt Sign
+              * theme and plugin
+            </script>
+        </section>
+        <section>
+          <h2>终端使用技巧</h2>
+          <h3>tmux</h3>
+          <img height="500" src="./sources/img/tmux.png">
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 终端使用技巧
+              ### tmux
+              * 终端内的多窗口
+              * window and panel
+              * 分屏
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## 终端使用技巧
+              ### 在 VS Code 中的使用
+            </script>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Shell 脚本
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Shell 脚本
+              ### if 逻辑
+```
+# 指定动态链接库,用于构建 jpeg
+if [ $LD_LIBRARY_PATH ]; then
+ export LD_LIBRARY_PATH=/opt/glibc-2.14/lib:$LD_LIBRARY_PATH
+else
+ export LD_LIBRARY_PATH=/opt/glibc-2.14/lib
+fi
+```
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Shell 脚本
+              ### 多重命令与回传码
+
+              > cmd1 ## cmd2
+
+              * `||` 命令或
+              * `&&` 命令与
+              * `;` 连续执行命令
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Shell 脚本
+              ### 多重命令实例
+```
+if build
+then 
+  send_log_to_git success || exit 0
+else 
+  send_log_to_git fail && exit 127
+fi
+```
+```
+const shellCommands = [
+  `cd ${pathHere}`,
+  `git add ./`,
+  `git commit -m "${msg}"`,
+  `git push`
+  ].join(' && ');
+```
+```
+cd: no such file or directory: no-exit-folder
+$ cd no-eixt-folder; rm -rf ./
+......
+......
+......^C
+```
+            </script>
+        </section>
+        <section>
+          <h2>shell 脚本</h2>
+          <h3>多重命令实例</h3>
+          <img height="500" src="./sources/img/gitlab-delete.png">
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Shell 脚本
+              ### 重定向
+              * `1>` stdout 覆盖输出到文件
+              * `1>>` stdout 累加输出到文件
+              * `2>` stderr 覆盖输出到文件
+              * `2>>` stderr 累加输出到文件
+              * `&>`, `&>>`
+              * `<` 使用文件代替键盘输入
+
+              > node server.js >> log.txt
+            </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## Shell 脚本
+              ### 管道操作
+
+```
+$ ps aux | grep node
+$ netstat -lanp | grep '8080'
+$ find -wholename '*.tpl' | xargs grep 'elesif'
+```
+            </script>
+        </section>
+        <section data-markdown>
+            <script type="text/template">
+              ## Shell 脚本
+              ### 循环
+```
+for i in $(ls ../muapp)
+do
+  echo $i
+  git clone ssh://git@git.mucfc.com:10022/muapp/${i}.git
+  gco master
+  gcb fix-ajax-bug
+done
+```
+```
+for i in $(ls ./)
+do
+  echo $i
+  cd $i
+  sed -i "s#options.replace#options.data.replace#g" ./src/pages/f7.js
+  ga ./src/pages/f7.js
+  git commit -m 'fixbug: ajax init hook data handle bug'
+  # git push -u origin fix-ajax-bug
+  cd ..
+done
+```
+            </script>
+        </section>
+      </section>
+
+      <section>
+        <h2>Q&A</h2>
+      </section>
+    </div>
+  </div>
+  <script src="./reveal/lib/js/head.min.js"></script>
+  <script src="./reveal/js/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      // Display a presentation progress bar
+      progress: true,
+      // Display the page number of the current slide
+      slideNumber: true, 
+      dependencies: 
+      [
+        {
+          src: './reveal/plugin/markdown/marked.js', 
+          condition: function() { 
+            return !!document.querySelector( '[data-markdown]' ); 
+          }
+        },
+        {
+          src: './reveal/plugin/markdown/markdown.js', 
+          condition: function() { 
+            return !!document.querySelector( '[data-markdown]' ); 
+          }
+        },
+        { src: './reveal/plugin/highlight/highlight.js',
+        async: true,
+        callback: function() { 
+          hljs.initHighlightingOnLoad(); } 
+        },    
+      ],
+    });
+    Reveal.configure({ slideNumber: 'c/t' });
+  </script>
+</body>
+
+</html>

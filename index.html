@@ -108,7 +108,7 @@
               * cd ~
               * cd /
               * pwd (print working directory)
-              * cd -
+              * cd - 跳转到上一个pwd
             </script>
         </section>
         <section data-markdown>
@@ -127,11 +127,11 @@
           <script type="text/template">
               ## 常用命令行工具
               ### 创建删除
-              * touch
-              * mkdir
-              * rm -rf
+              * touch 创建文件
+              * mkdir 创建文件夹
+              * rm -rf 删除文件夹,不用确定
               * mv 移动或重命名
-              * cp -r
+              * cp -r 拷贝文件夹
               * `cp -s target softlink` 创建软链接
 
 > $ sudo rm -rf ./ tmp
@@ -172,8 +172,8 @@ $ find -wholename '\*apply/\*.tpl' # \*表示`*`
               ## 常用命令行工具
               ### 查看查找
               #### grep (global regular expression print)
-              * **grep -rin** 
-              * **grep -rin3**
+              * **grep -rin** 查找当前目录的文件内容,遍历,忽略大小写,显示匹配行编号
+              * **grep -rin3** 显示匹配的文件行上下3行的内容,3可以替换为其他数字
               * Regexp
 
 ```
@@ -214,8 +214,8 @@ $ sed -i "s#ajaxStart#AjaxStart#g" ./src/pages/f7.js
               * lsof -i PORT (list open files)
 
 ```
-$ ping m-zl-st1.cfcmu.cn
-PING m-zl-st1.cfcmu.cn (127.0.0.1) 56(84) bytes of data.
+$ ping www.mucfc.com
+PING www.mucfc.com (127.0.0.1) 56(84) bytes of data.
 ```
 ```
 Error: listen EADDRINUSE 0.0.0.0:8080
@@ -231,7 +231,7 @@ $ lsof -i :8080
           <script type="text/template">
               ## 常用命令行工具
               ### 编辑工具 Vim
-              * modes: navigation -- edit -- command 
+              * modes: normal -- insert -- command-line
               * Terminal
               * VS Code -- vscodevim
               * chrome extention -- Vimium
@@ -250,7 +250,7 @@ $ lsof -i :8080
         <section data-markdown>
           <script type="text/template">
               ## 终端使用技巧
-              ### alias
+              ### alias 别名
               * git
               * rm 
               * vscode
@@ -260,6 +260,7 @@ $ lsof -i :8080
           <script type="text/template">
               ## 终端使用技巧
               ### alias
+              #### rm 别名,避免误删除
 
 ```
 # rm -rf hack
@@ -293,7 +294,7 @@ trash(){
               ### zsh / oh-my-zsh
               * 强大的自动补全 (Command-line completion)
               * 友好的提示 Prompt Sign
-              * theme and plugin
+              * Theme and Plugin
             </script>
         </section>
         <section>
@@ -314,6 +315,8 @@ trash(){
           <script type="text/template">
               ## 终端使用技巧
               ### 在 VS Code 中的使用
+              * 使用内置终端
+              * 使用 vim 按键映射
             </script>
         </section>
       </section>
@@ -418,7 +421,7 @@ $ find -wholename '*.tpl' | xargs grep 'elesif'
 for i in $(ls ../muapp)
 do
   echo $i
-  git clone ssh://git@git.mucfc.com:10022/muapp/${i}.git
+  git clone ssh://git@git.xxx.com:10022/muapp/${i}.git
   gco master
   gcb fix-ajax-bug
 done
